@@ -1,24 +1,71 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Latex Page</title>
-        <link rel="stylesheet" type="text/css" href="latex.css">
-    </head>
-    <body>
-        <h1>
-            <a id="Latex"></a>
-            This Entire Page is Latex Styled        </h1>
-        <p class="author">Varenya Upadhyaya - 24 Oct 2024</p>
-        <p>
-            This is a cool css template I found online 
-			<strong>here is some bold text</strong>
-            <em>This text is italicized</em>
-        </p>
-        <h2>
-            <a id="Second heading"></a>
-			Second Heading, paygrade: h2
-        </h2>
-        <p>placerat feugiat libero id, mollis efficitur purus. Morbi non vulputate augue. </p>
-    </body>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <title> Latex Page TBD </title>
+
+  <meta name="description"
+    content="A minimal, almost class-less CSS library to write modern websites that look like LaTeX documents." />
+  <meta name="keywords" content="latex.css,css library,class-less css,latex css" />
+  <meta property="og:title" content="LaTeX.css" />
+  <meta property="og:url" content="https://latex.vercel.app" />
+  <meta property="og:description"
+    content="A minimal, almost class-less CSS library to write modern websites that look like LaTeX documents." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="latex.css" />
+  <link rel="stylesheet" href="prism/prism.css" />
+</head>
+
+<body id="top">
+  <header>
+    <h1><span class="latex">Latex Page tiem</h1>
+    <p class="author">
+      Varenya Upadhyaya <br />
+      24 October 2024    </p>
+  </header>
+
+  <div class="abstract">
+    <h2>Abstract</h2>
+	<p>   
+		On our search for random website templates, we came across a latex themed css file and decided to add the theme to one the pages on our own website. We found that ripping off .css files from the internet activated the Nucleus Accumbens	and decided to store some text (that isn't latin gibberish) for the time being. Additionally, we modified the code and added some personality to build some momentum towards creating something meaningful eventually. Whereas figuring out the best usage of this discovery is beyond the scope of our research, we hope this work inspires certain bored individuals to add a little pizzazz to their own personal websites.
+	</p>  
+  </div>
+
+
+ 
+
+  <main>
+    <article>
+      <h2 id="introduction">Introduction</h2>
+	 Get in loser, we're doing this page latex style.
+		<br>
+	 What's a Hawaiian programmers favorite language? LaTeX? like lei tech? haha?
+
+
+      
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'],],
+      },
+    }
+    const typeFaceToggle = document.getElementById('typeface-toggle')
+    const typeface = document.getElementById('typeface')
+    typeFaceToggle.addEventListener('click', () => {
+      document.body.classList.toggle('libertinus')
+      typeface.textContent = document.body.classList.contains('libertinus') ? 'Libertinus' : 'Latin Modern'
+    })
+
+    const darkModeToggle = document.getElementById('dark-mode-toggle')
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('latex-dark')
+    })
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script async src="prism/prism.js"></script>
+</body>
+
 </html>
