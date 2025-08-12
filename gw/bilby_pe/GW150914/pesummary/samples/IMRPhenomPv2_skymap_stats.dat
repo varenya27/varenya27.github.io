@@ -1,0 +1,3 @@
+# /home/vupadhyaya_umassd_edu/miniforge3/envs/igwn-py311/bin/ligo-skymap-stats /home/vupadhyaya_umassd_edu/surrogate_modeling/AlignedSpin/marginalization/bilby_pe/run1_150914/pesummary/samples/IMRPhenomPv2_skymap.fits -p 50 90 -o /home/vupadhyaya_umassd_edu/surrogate_modeling/AlignedSpin/marginalization/bilby_pe/run1_150914/pesummary/samples/IMRPhenomPv2_skymap_stats.dat
+coinc_event_id	runtime	distmean	diststd	log_bci	log_bsn	area(50)	area(90)	dist(50)	dist(90)	vol(50)	vol(90)
+None	nan	452.4315200490744	85.90791574750594	nan	nan	42.427098220930596	144.44757787885038	116.41078694400329	281.05343349132255	525240.4970917167	2536179.4246450523
