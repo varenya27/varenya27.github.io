@@ -16,8 +16,8 @@ heroImage: '../../assets/NRHybSur3dq8_waveform_time_domain.png'
 | Cluster            | Unity           |
 
 # gwsurr.py
-<!-- <details> -->
-<!-- <summary>Show Code</summary> -->
+<details>
+<summary>Show Code</summary>
 
 ```python
 try:
@@ -263,7 +263,7 @@ class NRHybSur3dq8_gwsurr(CompactBinaryCoalescenceGenerator):
         return new_dc
 ```
 
-<!-- </details> -->
+</details>
 
 Add file location to python path, eg. add to `.bashrc`:
 ```bash
