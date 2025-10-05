@@ -42,16 +42,6 @@ import warnings
 warnings.filterwarnings('ignore', message='.*Spin')
 
 class NRHybSur3dq8_gwsurr(CompactBinaryCoalescenceGenerator):
-    """
-    Implements a toy wrapper for NRHybSur3dq8 in the gwsurrogate package
-
-    Parameters
-    ----------
-
-        No parameters required for initilazation.
-
-    """
-
     def __init__(self, **kwargs):
         self.sur = gwsurr.LoadSurrogate("NRHybSur3dq8")
         self._update_domains()
@@ -105,8 +95,6 @@ class NRHybSur3dq8_gwsurr(CompactBinaryCoalescenceGenerator):
         tmerge = lalsim.SimInspiralMergeTimeBound(m1_kg,m2_kg)+lalsim.SimInspiralRingdownTimeBound(m1_kg+m2_kg,s)
         textra = extra_cycles / fmin
         fstart = lalsim.SimInspiralChirpStartFrequencyBound((1.+extra_time_fraction)*tchirp+tmerge+textra,m1_kg,m2_kg)
-        # fstart=16.3
-        # print('DBUG starting at %f Hz instead of %f Hz'%(fstart,fmin))
 
         times, h, dyn = self.sur(
             q,
@@ -120,14 +108,7 @@ class NRHybSur3dq8_gwsurr(CompactBinaryCoalescenceGenerator):
             dist_mpc=dist/1e6,  # In Mpc
         )
 
-        # gwsurrogate already returns things as a dict
-        # indexed by (ell,m) so just return that
-        # Create gwpy timeseries
-        # CK : Adding time_array to h so that this can be passed to
-        # gw.GravitationalWaveModes
-
         hlm = self._to_gwpy_series(h, times)
-        #hlm['time_array'] = times
         return gw.GravitationalWaveModes(hlm)
 
     def generate_td_waveform(self, **parameters):
@@ -139,7 +120,6 @@ class NRHybSur3dq8_gwsurr(CompactBinaryCoalescenceGenerator):
         return hp, hc
 
     def generate_fd_polarizations_from_td(self, **parameters):
-
         # Adjust deltaT depending on sampling rate
         fmax = parameters["f_max"].value
         f_nyquist = fmax
@@ -154,17 +134,14 @@ class NRHybSur3dq8_gwsurr(CompactBinaryCoalescenceGenerator):
                 f_nyquist = np.ldexp(1, int(chirplen_exp[1])) * deltaF
 
         deltaT = 0.5 / f_nyquist
-        # print('DBUG setting deltaT to %f s for fmax=%f Hz'%(deltaT,fmax))
         parameters["deltaT"] = deltaT*u.s
 
 
         hp_,hc_ = self.generate_td_waveform(**parameters)
         # VU: set epoch to merger time according to surrogate convention (instead of start time)
-        # set epoch to value in the time array closest to 0
         epoch = lal.LIGOTimeGPS(
             hp_.times[np.abs(np.array(hp_.times)).argmin()].value
         )
-        # print('DBUG epoch (merger time) = ', epoch)
         hp = lal.CreateREAL8TimeSeries(
             "hplus", epoch, 0, parameters["deltaT"].value, lal.DimensionlessUnit, len(hp_)
         )
@@ -196,13 +173,6 @@ class NRHybSur3dq8_gwsurr(CompactBinaryCoalescenceGenerator):
 
         lalsim.SimInspiralTDConditionStage2(hp,hc, fmin,fisco)
 
-        # # tapering with tukey window
-        # lalsim.SimInspiralREAL8WaveTaper(hp.data, 1)
-        # lalsim.SimInspiralREAL8WaveTaper(hc.data, 1)
-
-        # print('DBUG lalseries length:', hp.data.length, hc.data.length)
-        # Adjust signal duration
-        # print('DBUG deltaF=', deltaF)
         if deltaF == 0:
             chirplen = hp.data.length
             chirplen_exp = np.frexp(chirplen)
@@ -213,10 +183,8 @@ class NRHybSur3dq8_gwsurr(CompactBinaryCoalescenceGenerator):
         else:
             chirplen = int(1.0 / (deltaF * deltaT))
 
-        # resize waveforms to the required length
         lal.ResizeREAL8TimeSeries(hp, hp.data.length - chirplen, chirplen)
         lal.ResizeREAL8TimeSeries(hc, hc.data.length - chirplen, chirplen)
-        # print('DBUG resizing to:',hp.data.length, hp.data.length-chirplen, chirplen, chirplen/2.+1)
 
         # FFT - Using LAL routines
         hptilde = lal.CreateCOMPLEX16FrequencySeries(
@@ -265,18 +233,20 @@ class NRHybSur3dq8_gwsurr(CompactBinaryCoalescenceGenerator):
 
 </details>
 
-Add file location to python path, eg. add to `.bashrc`:
+- gwsignal-like implementation that makes calls to gwsurrogate for the waveform at some parameters given by the PE code
+- The class `NRHybSur3dq8_gwsurr` inherits from `CompactBinaryCoalescenceGenerator` and returns a waveform that is ready to go to bilby's likelihood function
+- Add file location to python path, eg. add to `.bashrc`:
 ```bash
 export PYTHONPATH="$HOME/src/new-waveforms-interface/python_interface/gwsignal/models:$PYTHONPATH"
 ```
-
-1. `generate_td_modes` makes calls to gwsurrogate; check for parameter consistencies here!
-2. `generate_td_waveform` $h_+-ih_\times=\sum h_{lm}(t;\lambda)_{-2}Y_{lm}(\theta,\phi)$
-3. `generate_fd_polarizations_from_td` 
-    1. adjust `deltaT`
-    2. set `epoch` as merger time
-    3. compute a frequency lower than `f_low`; taper between these two
-    4. resize and return FFTs of td waveforms
+- Key methods in the class:
+    1. `generate_td_modes` makes calls to gwsurrogate; check for parameter consistencies here!
+    2. `generate_td_waveform` $h_+-ih_\times=\sum h_{lm}(t;\lambda)_{-2}Y_{lm}(\theta,\phi)$
+    3. `generate_fd_polarizations_from_td` 
+        1. adjusts `deltaT`
+        2. sets `epoch` as merger time
+        3. computes a frequency lower than `f_low`; taper between these two
+        4. resizes and returns FFTs of td waveforms
 
 # gwsurr_wrapper.py 
 <details>
@@ -310,15 +280,12 @@ def parameter_conversion(parameters):
     return params, keys
 
 def get_waveform_generator(**kwargs):
-    print('DBUG',kwargs)
-    kwargs.pop('frequency_domain_source_model')
-    kwargs.pop('parameter_conversion')
-    
-    return WaveformGenerator(
-        frequency_domain_source_model=NRSur3dq8_Lev2_varenya_wrapper,
-        parameter_conversion=parameter_conversion,
-        **kwargs
-    )
+    # bilby sometimes defaults to the inbuilt BBH parameter conversion function, which we don't want
+    if not kwargs['parameter_conversion'] is parameter_conversion:
+        print(f"PROG Updating parameter conversion function from {kwargs['parameter_conversion']} to {parameter_conversion}")
+        kwargs['parameter_conversion']=parameter_conversion
+
+    return WaveformGenerator(**kwargs)
 
 def NRHybSur3dq8_wrapper(freqs, mass1,mass2,spin1z,spin2z,distance,inclination,phi_ref,**waveform_arguments):
     hp,hc =  gen.generate_fd_polarizations_from_td(
@@ -338,10 +305,13 @@ def NRHybSur3dq8_wrapper(freqs, mass1,mass2,spin1z,spin2z,distance,inclination,p
 ```
 </details>
 
-ideally store in same location as `gwsurr.py`
-1. `parameter_conversion` mostly a convention thing
-2. `get_waveform_generator` wrapper to deal with parallel-bilby's occasional insolence 
-3. `NRHybSur3dq8_wrapper` function exposed to bilby (**do not change input/output format!**)
+
+- Wrapper file exposed to bilby. 
+- Ideally store in the same location as the previous`gwsurr.py`
+- Functions in this file:
+    1. `parameter_conversion` mostly a convention thing
+    2. `get_waveform_generator` wrapper to deal with parallel-bilby's occasional insolence 
+    3. `NRHybSur3dq8_wrapper` function exposed to bilby (**do not change input/output format!**)
 
 # GW150914.ini
 <details>
@@ -408,9 +378,10 @@ enforce-signal-duration=True
 
 waveform-generator=gwsurr_wrappers.get_waveform_generator
 waveform-approximant=NRSurr
+frequency-domain-source-model=gwsurr_wrappers.NRHybSur3dq8_wrapper
 waveform-arguments-dict ={
   reference-frequency:20., 
-  minimum-requency:20.,
+  f_min:20.,
 }
 conversion-function=gwsurr_wrappers.parameter_conversion
 ###############################################################################
@@ -433,7 +404,20 @@ n-check-point = 10000
 ```
 </details>
 
-- the `Waveform Arguments` section is the place to make changes; currently the model is set inside `get_waveform_generator` instead of in the .ini file (not ideal)
+- the `Waveform Arguments` section is the place to make changes
+
+```bash
+waveform-generator=gwsurr_wrappers.get_waveform_generator
+waveform-approximant=NRSurr
+frequency-domain-source-model=gwsurr_wrappers.NRHybSur3dq8_wrapper
+waveform-arguments-dict ={
+  reference-frequency:20., 
+  f_min:20.,
+}
+conversion-function=gwsurr_wrappers.parameter_conversion
+```
+for some reason the code doesn't properly assign the conversion function, there is a check inside `get_waveform_generator` for this; to use a different approximant, make a new class in `gwsurr.py` and `gwsurr_wrappers.py` and specify it here under `frequency-domain-source-model`
+
 - create `psd_data/`; add `h1_psd.txt` and `l1_psd.txt`; [see here](https://git.ligo.org/lscsoft/parallel_bilby/-/tree/master/examples/GW150914/psd_data)
 - generate submission files with:
 ```bash
