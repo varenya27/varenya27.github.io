@@ -248,7 +248,7 @@ export PYTHONPATH="$HOME/src/new-waveforms-interface/python_interface/gwsignal/m
         3. computes a frequency lower than `f_low`; taper between these two
         4. resizes and returns FFTs of td waveforms
 
-# gwsurr_wrapper.py 
+# gwsurr_wrappers.py 
 <details>
 <summary>Show Code</summary>
 
