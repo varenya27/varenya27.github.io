@@ -234,7 +234,7 @@ class NRHybSur3dq8_gwsurr(CompactBinaryCoalescenceGenerator):
 </details>
 
 - gwsignal-like implementation that makes calls to gwsurrogate for the waveform at some parameters given by the PE code
-- The class `NRHybSur3dq8_gwsurr` inherits from `CompactBinaryCoalescenceGenerator` and returns a waveform that is ready to go to bilby's likelihood function
+- The class `NRHybSur3dq8_gwsurr` inherits from `lalsimulation.gwsignal.core.waveform.CompactBinaryCoalescenceGenerator` and returns a waveform that is ready to go to bilby's likelihood function
 - Add file location to python path, eg. add to `.bashrc`:
 ```bash
 export PYTHONPATH="$HOME/src/new-waveforms-interface/python_interface/gwsignal/models:$PYTHONPATH"
@@ -296,7 +296,7 @@ def NRHybSur3dq8_wrapper(freqs, mass1,mass2,spin1z,spin2z,distance,inclination,p
         distance=distance*u.Mpc,
         inclination=inclination*u.rad,
         phi_ref=(phi_ref)*u.rad,
-        f22_start=waveform_arguments['minimum_frequency']*u.Hz,
+        f22_start=waveform_arguments['f_min']*u.Hz,
         f22_ref=waveform_arguments['reference_frequency']*u.Hz,
         f_max = max(freqs)*u.Hz,
         deltaF=(freqs[1]-freqs[0])*u.Hz,
@@ -379,8 +379,8 @@ enforce-signal-duration=True
 waveform-generator=gwsurr_wrappers.get_waveform_generator
 waveform-approximant=NRSurr
 frequency-domain-source-model=gwsurr_wrappers.NRHybSur3dq8_wrapper
+reference-frequency:20., 
 waveform-arguments-dict ={
-  reference-frequency:20., 
   f_min:20.,
 }
 conversion-function=gwsurr_wrappers.parameter_conversion
@@ -410,8 +410,8 @@ n-check-point = 10000
 waveform-generator=gwsurr_wrappers.get_waveform_generator
 waveform-approximant=NRSurr
 frequency-domain-source-model=gwsurr_wrappers.NRHybSur3dq8_wrapper
+reference-frequency:20., 
 waveform-arguments-dict ={
-  reference-frequency:20., 
   f_min:20.,
 }
 conversion-function=gwsurr_wrappers.parameter_conversion
