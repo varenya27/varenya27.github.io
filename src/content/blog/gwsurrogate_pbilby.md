@@ -410,7 +410,7 @@ n-check-point = 10000
 waveform-generator=gwsurr_wrappers.get_waveform_generator
 waveform-approximant=NRSurr
 frequency-domain-source-model=gwsurr_wrappers.NRHybSur3dq8_wrapper
-reference-frequency:20., 
+reference-frequency=20. 
 waveform-arguments-dict ={
   f_min:20.,
 }
