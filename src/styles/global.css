@@ -136,6 +136,25 @@ hr {
 	}
 }
 
+.text-image {
+  display: flex;
+  align-items: center;       /* vertically center text & image */
+  justify-content: space-between;
+  gap: 1rem;                 /* space between text and image */
+}
+
+.text-image p {
+  flex: 1;                   /* left half */
+  margin: 0;
+}
+
+.text-image img {
+  flex: 1;                   /* right half */
+  max-width: 50%;
+  height: 5%;
+  border-radius: 12px;       /* optional */
+  object-fit: cover;         /* fills space nicely */
+}
 .sr-only {
 	border: 0;
 	padding: 0;
