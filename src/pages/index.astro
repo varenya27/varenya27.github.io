@@ -3,6 +3,9 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { Image } from 'astro:assets';
+import profilePic from '../assets/profile.webp';
+
 ---
 
 <!doctype html>
@@ -15,14 +18,23 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<main>
 			<h1>⚠ Under Construction ⚠</h1>
 			<div class="text-image">
-			<p>
-				I am a PhD student in the Engineering and Applied Sciences department at <a href="https:www.umassd.edu/">UMass Dartmouth</a> where I work with <a href="http://www.math.umassd.edu/~sfield/index.html">Scott Field</a> and <a href="https://vijayvarma.com/">Vijay Varma</a> on Gravitational Wave Modeling.
-				Before this, I was an <a href="https://physics.iith.ac.in/programs/btech.html#"> Engineering Physics</a> undergrad at <a href="https://iith.ac.in"> IIT Hyderabad</a> working with <a href="https://people.iith.ac.in/shantanud/"> Shantanu Desai </a> and <a href="https://ingauris.github.io/gsharma/"> Gauri Sharma </a> on scaling relations in galaxies.
-				I also worked on r-modes in pulsars as a <a href="https://www.mitacs.ca/our-programs/globalink-research-internship-students/"> Mitacs</a>  intern at <a href = " https://physics.uwo.ca/"> Western University </a> with <a href = "https://publish.uwo.ca/~valluri/"> Sree Ram Valluri</a> 
-			</p>
+				<p>
+					I am a PhD student in the Engineering and Applied Sciences department at <a href="https:www.umassd.edu/">UMass Dartmouth</a> where I work with <a href="http://www.math.umassd.edu/~sfield/index.html">Scott Field</a> and <a href="https://vijayvarma.com/">Vijay Varma</a> on Gravitational Wave Modeling.
+					Before this, I was an <a href="https://physics.iith.ac.in/programs/btech.html#"> Engineering Physics</a> undergrad at <a href="https://iith.ac.in"> IIT Hyderabad</a> working with <a href="https://people.iith.ac.in/shantanud/"> Shantanu Desai </a> and <a href="https://ingauris.github.io/gsharma/"> Gauri Sharma </a> on scaling relations in galaxies.
+					I also worked on r-modes in pulsars as a <a href="https://www.mitacs.ca/our-programs/globalink-research-internship-students/"> Mitacs</a>  intern at <a href = " https://physics.uwo.ca/"> Western University </a> with <a href = "https://publish.uwo.ca/~valluri/"> Sree Ram Valluri</a> 
+				</p>
 
-				<img src="/src/assets/profile.webp" alt="Example" />
+				<Image
+					src={profilePic}
+					alt="Portrait of Varenya Upadhyaya"
+					format="webp"
+					widths={[320, 640, 960]}
+					sizes="(max-width: 600px) 320px, 640px"
+					class="rounded-2xl shadow-lg"
+					loading="eagerly"
+				/>
 			</div>
+
 			<h4> News & Updates </h4>
 			[Aug '25] Publication | <a href="https://www.sciencedirect.com/science/article/abs/pii/S2214404825001272?via%"> r-Modes in Pulsars </a> <br>
 			[Jul '25] Summer School | Prospects in Theoretical Physics, Princeton <br>
