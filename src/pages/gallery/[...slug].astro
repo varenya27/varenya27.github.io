@@ -1,0 +1,38 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+
+const { slug } = Astro.params;
+
+// Dynamically import all images in the chosen folder
+const images = import.meta.glob("../../assets/gallery/${slug}/*.{jpg,jpeg,png,webp}", {
+  eager: true,
+  import: "default",
+});
+
+// Exclude the cover image if present
+const galleryImages = Object.entries(images)
+  .filter(([path]) => !path.includes("cover"))
+  .map(([_, src]) => src);
+---
+
+<BaseHead title={slug} description={`Photos in ${slug}`} />
+<Header />
+
+<main class="max-w-6xl mx-auto px-6 py-12">
+  <h1 class="text-4xl font-bold mb-8 capitalize">{slug}</h1>
+
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {galleryImages.map((src) => (
+      <img
+        src={src}
+        alt={slug}
+        loading="lazy"
+        class="rounded-xl shadow-md hover:shadow-lg transition object-cover w-full h-64"
+      />
+    ))}
+  </div>
+</main>
+
+<Footer />

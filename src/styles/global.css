@@ -5,7 +5,7 @@
  */
 
 :root {
-	--accent: #2337ff;
+	--accent: #5b7061;
 	--accent-dark: #000d8a;
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
@@ -30,21 +30,57 @@
 	font-style: normal;
 	font-display: swap;
 }
+@font-face {
+	font-family: "CanelaDeck";
+	src: url("/fonts/CanelaDeck-Bold-Trial.otf") ;
+	font-weight: 600;
+	/* font-style: normal; */
+	/* font-display: swap; */
+}
+
+@font-face {
+	font-family: "PoppinsHeading";
+	src: url("/fonts/Poppins-Bold.ttf") ;
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "PoppinsBody";
+	src: url("/fonts/Poppins-Light.ttf") ;
+	font-weight: 600;
+}
+
+
 body {
-	font-family: "Atkinson", sans-serif;
+	font-family: "PoppinsBody";
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: #fff8e7;/* linear-gradient(var(--gray-gradient)) no-repeat; */
+	background: #fff8e7;
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--gray-dark));
-	font-size: 20px;
+	font-size: 22px;
 	line-height: 1.7;
 }
+
+body::before{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/src/assets/bg-texture-inverted.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.2;
+    z-index: -1;
+}
 main {
-	width: 720px;
+	width: 1020px;
 	max-width: calc(100% - 2em);
 	margin: auto;
 	padding: 3em 1em;
@@ -56,8 +92,9 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
+	color: #353534;
 	line-height: 1.2;
+	font-family: "PoppinsHeading";
 }
 h1 {
 	font-size: 3.052em;
@@ -138,22 +175,20 @@ hr {
 
 .text-image {
   display: flex;
-  align-items: center;       /* vertically center text & image */
   justify-content: space-between;
-  gap: 1rem;                 /* space between text and image */
-}
-
-.text-image p {
-  flex: 1;                   /* left half */
-  margin: 0;
+  gap: 1rem;
 }
 
 .text-image img {
-  flex: 1;                   /* right half */
-  max-width: 50%;
+  flex: 1;
+  max-width: 30%;
   height: 5%;
-  border-radius: 12px;       /* optional */
-  object-fit: cover;         /* fills space nicely */
+  border-radius: 12px;
+  object-fit: cover;
+}
+.text-content {
+  flex: 1;
+  margin: 0;
 }
 .sr-only {
 	border: 0;

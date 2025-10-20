@@ -13,6 +13,7 @@
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.6.0",
     "astro": "^5.14.1",
+    "lucide-react": "^0.546.0",
     "rehype-mathjax": "^7.1.0",
     "remark-math": "^6.0.0",
     "sharp": "^0.34.3"

@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+
+type Props = CollectionEntry<'research'>['data'];
+const { title, description, pubDate, heroImage, link, abs} = Astro.props;
+
+
+// to render abstract from frontmatter in markdown
+import remarkMath from "remark-math";
+import rehypeMathjax from "rehype-mathjax";
+import rehypeStringify from 'rehype-stringify'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import {unified} from 'unified'
+
+const processor = unified()
+  .use(remarkParse)
+  .use(remarkRehype, {allowDangerousHtml: true})
+  .use(rehypeStringify)
+  .use(remarkMath)
+  .use(rehypeMathjax)
+
+const absMD = await processor.process(abs)
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+
+		<style>
+			main {
+				width: calc(100% - 2em);
+				max-width: 100%;
+				margin: 0;
+			}
+			.hero-image {
+				width: 100%;
+			}
+			.hero-image img {
+				display: block;
+				margin: 0 auto;
+				border-radius: 6px;
+				box-shadow: var(--box-shadow);
+			}
+			.prose {
+				width: 1080px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 1em;
+				color: rgb(var(--gray-dark));
+			}
+			.title {
+				margin-bottom: 1em;
+				padding: 1em 0;
+				text-align: center;
+				line-height: 1;
+			}
+			.title h1 {
+				margin: 0 0 0.5em 0;
+			}
+			.date {
+				margin-bottom: 0.5em;
+				color: rgb(var(--gray));
+			}
+			.last-updated-on {
+				font-style: italic;
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="hero-image">
+					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+				</div>
+				<div class="prose">
+					<div class="title">
+						<h1>{title}</h1>
+												<hr/>
+					</div>
+					<div style="display:flex;justify-content:space-between">
+						<span>
+							<h2>Abstract </h2> 
+						</span>
+						<span>
+							<h3><a href={link}[::-6]>{link.slice(-10,)}</a></h3>
+						</span>
+					</div>
+					{ absMD }
+					<slot />
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

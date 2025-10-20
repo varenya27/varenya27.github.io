@@ -27,6 +27,8 @@ const research = defineCollection({
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: image().optional(),
+			link: z.string(),
+			abs: z.string(),
 		}),
 });
 export const collections = { blog, research };

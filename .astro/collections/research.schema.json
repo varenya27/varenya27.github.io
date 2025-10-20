@@ -45,6 +45,12 @@
         "heroImage": {
           "type": "string"
         },
+        "link": {
+          "type": "string"
+        },
+        "abs": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }
@@ -52,7 +58,9 @@
       "required": [
         "title",
         "description",
-        "pubDate"
+        "pubDate",
+        "link",
+        "abs"
       ],
       "additionalProperties": false
     }

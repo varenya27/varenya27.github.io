@@ -1,0 +1,44 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+
+// Get all folders in /assets/gallery
+const galleryModules = import.meta.glob("../../assets/gallery/*/cover.{jpg,jpeg,png,webp}", {
+  eager: true,
+  import: "default",
+});
+
+const galleries = Object.entries(galleryModules).map(([path, cover]) => {
+  const slug = path.split("/").at(-2); // folder name
+  return { slug, cover, title: slug.charAt(0).toUpperCase() + slug.slice(1) };
+});
+---
+
+<BaseHead title="Gallery" description="Collections of themed photo sets" />
+<Header />
+
+<main class="max-w-5xl mx-auto px-6 py-12">
+  <h1 class="text-4xl font-bold mb-8">Gallery</h1>
+
+  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    {galleries.map(({ slug, cover, title }) => (
+      <a
+        href={`/gallery/${slug}/`}
+        class="block rounded-2xl overflow-hidden shadow hover:shadow-lg transition"
+      >
+        <img
+          src={cover}
+          alt={title}
+          loading="eager"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-4">
+          <h2 class="text-xl font-semibold">{title}</h2>
+        </div>
+      </a>
+    ))}
+  </div>
+</main>
+
+<Footer />
