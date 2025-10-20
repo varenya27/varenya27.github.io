@@ -17,14 +17,20 @@ import HeaderLink from './HeaderLink.astro';
 </header>
 <style>
 	header {
-		margin: 0;
+		position: fixed;
+		/* top: 0;   */
+		right: 0;
+		left: 0;
+		margin: 10;
 		padding: 0 1em;
-		background: #E5DFCF;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+		backdrop-filter: blur(10px);
+		background: rgba(78, 97, 81,  0.6);
+		box-shadow: 0 2px 8px rgba(34, 54, 39,  0.6), 45%);
+		z-index: 1000
 	}
 	h2 {
 		margin: 0;
-		font-size: 1em;
+		font-size: 1.1em;
 	}
 
 	h2 a,
@@ -37,7 +43,7 @@ import HeaderLink from './HeaderLink.astro';
 		justify-content: space-between;
 	}
 	nav a {
-		padding: 1em 0.5em;
+		padding: 0.7em 0.5em;
 		color: var(--black);
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
