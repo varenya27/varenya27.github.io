@@ -4,3 +4,4 @@
 *.dat
 *drafts/*
 node_modules/*
+*pickle*
