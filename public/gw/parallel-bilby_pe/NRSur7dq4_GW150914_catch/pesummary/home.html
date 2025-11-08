@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+  <title>Summary Pages</title>
+<!--
+                                    Made by
+            ____  ___________
+           / __ \/ ____/ ___/__  ______ ___  ____ ___  ____ ________  __
+          / /_/ / __/  \__ \/ / / / __ `__ \/ __ `__ \/ __ `/ ___/ / / /
+         / ____/ /___ ___/ / /_/ / / / / / / / / / / / /_/ / /  / /_/ /
+        /_/   /_____//____/\__,_/_/ /_/ /_/_/ /_/ /_/\__,_/_/   \__, /
+                                                               /____/
+
+                                   MIT License
+
+       PESummary was developed by Hoy et al. and source code can be seen
+       here: git.ligo.org/lscsoft/pesummary. If you wish to use PESummary
+   for your own work, please cite PESummary. The following page gives details
+   https://lscsoft.docs.ligo.org/pesummary/stable/citing_pesummary.html.
+                                     Thanks!
+  -->
+<html lang='en'>
+    <title>title</title>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>
+
+</head>
+<body style='background-color:#F8F8F8; margin-top:5em; min-height: 100%'>
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+    <script src='./js/combine_corner.js'></script>
+    <script src='./js/grab.js'></script>
+    <script src='./js/modal.js'></script>
+    <script src='./js/multi_dropbar.js'></script>
+    <script src='./js/multiple_posteriors.js'></script>
+    <script src='./js/search.js'></script>
+    <script src='./js/side_bar.js'></script>
+    <script src='./js/html_to_csv.js'></script>
+    <script src='./js/html_to_json.js'></script>
+    <script src='./js/html_to_shell.js'></script>
+    <script src='./js/expert.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/navbar.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/table.css">
+    <link rel="stylesheet" href="./css/image_styles.css">
+    <link rel="stylesheet" href="./css/watermark.css">
+    <link rel="stylesheet" href="./css/toggle.css">
+
+<div id='background'>
+<p id='bg-text'>Preliminary Preliminary</p>
+<p id='bg-text'>Preliminary Preliminary</p>
+<p id='bg-text'>Preliminary Preliminary</p>
+</div>
+<h7 hidden>None</h7>
+<h7 hidden>None</h7>
+<nav class='navbar navbar-expand-sm navbar-dark bg-dark fixed-top'>
+  <a class='navbar-brand' href='#' style='color: white'>Navbar</a>
+  <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#collapsibleNavbar'>
+    <span class='navbar-toggler-icon'></span>
+  </button>
+    <div class='collapse navbar-collapse' id='collapsibleNavbar'>
+      <ul class='navbar-nav'>
+        <li class='nav-item'>
+          <a class='nav-link' href='#' onclick='grab_html("home")'>home</a>
+        </li>
+        <li class='nav-item'>
+          <li class='nav-item dropdown'>
+            <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+            Result Pages
+            </a>
+            <ul class='dropdown-menu' aria-labelledby='dropdown1'>
+              <li class='dropdown-item' href='#' onclick='grab_html("gwsignal4gwsurr", label="gwsignal4gwsurr")'><a>gwsignal4gwsurr</a></li>
+              <li class='dropdown-item' href='#' onclick='grab_html("IMRPhenomX", label="IMRPhenomX")'><a>IMRPhenomX</a></li>
+              <li class='dropdown-item' href='#' onclick='grab_html("Comparison")'><a>Comparison</a></li>
+            </ul>
+          </li>
+        <li class='nav-item'>
+          <a class='nav-link' href='#' onclick='grab_html("Logging")'>Logging</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link' href='#' onclick='grab_html("Version")'>Version</a>
+        </li>
+      </ul>
+    </div>
+    <div class='collapse navbar-collapse' id='collapsibleNavbar'>
+      <ul class='navbar-nav flex-row ml-md-auto d-none d-md-flex'style='margin-right:1em;'>
+  <a class='nav-link' href='#', onclick='grab_html("Downloads")'>Downloads</a>
+  <a class='nav-link' href='#', onclick='grab_html("About")'>About</a>
+      </ul>
+    </div>
+    <input type='text' placeholder='search' id='search'>
+    <button type='submit' onclick='myFunction()'>Search</button>
+</nav>
+  <div class='banner'>
+Summary
+</div>
+  <div class='paragraph'>
+The figures below show the summary plots for the run
+</div>
+  <div class='banner'>
+gwsignal4gwsurr
+</div>
+  <div class='paragraph'>
+The figures below show the plots for gwsignal4gwsurr
+</div>
+<link rel='stylesheet' href='../css/image_styles.css'>
+<script>
+  $(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+  });
+</script>
+<style>
+  .popover {
+    max-width: 550px;
+    width: 550px;
+  }
+</style>
+<div class='container' style='margin-top:3em; margin-bottom:5em; background-color:#FFFFFF; box-shadow: 0 0 5px grey; max-width: 1400px'>
+  <div class='mx-auto d-block'>
+    <div class='row justify-content-center'>
+      <div class='row'>
+        <div class='column' style='padding-left: 1em;'>
+          <div class='container' style='display: inline-block; width: auto; padding: 0;'>
+      <a href='#demo_6425AC' data-slide-to='0'>
+        <img src='./plots/gwsignal4gwsurr_waveform_time_domain.png' alt='No image available' style='align-items:center; width:450px;'id=gwsignal4gwsurr_waveform_time_domain onclick='modal("gwsignal4gwsurr_waveform_time_domain", "Modal_6425AC")'>
+      </a>
+      <div class='row justify-content-center'>
+      <div class='col-sm-2'>
+      <div class='col-sm-2'>
+          <button value='test' class='btn btn-info btn-xs' style='cursor: pointer' data-toggle='popover' data-placement='top' data-content='Plot showing the time domain waveform generated from the maximum likelihood samples.'>Caption</button>
+          </div>
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='modal fade bs-example-modal-lg' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true' id='Modal_6425AC' style='margin-top: 200px;'>
+  <div class='modal-dialog modal-lg' style='width:90%'>
+    <div class='modal-content'>
+      <div id='demo_6425AC' class='carousel slide' data-ride='carousel' data-interval='false'>
+        <ul class='carousel-indicators'>
+          <li data-target='#demo_6425AC' data-slide-to-'0' class='active'></li>
+          <li data-target='#demo_6425AC' data-slide-to-'0'></li>
+          <li data-target='#demo_6425AC' data-slide-to='0' class='active'></li>
+          <li data-target='#demo_6425AC' data-slide-to='1'></li>
+          <li data-target='#demo_6425AC' data-slide-to='2'></li>
+        </ul>
+        <div class='carousel-inner'>
+          <div class='carousel-item active'>
+            <img src=./plots/gwsignal4gwsurr_waveform_time_domain.png style='align-items:center;' class='mx-auto d-block'>
+          </div>
+        </div>
+        <a class='carousel-control-prev' href='#demo_6425AC' data-slide='prev'>
+          <span class='carousel-control-prev-icon'></span>
+        </a>
+        <a class='carousel-control-next' href='#demo_6425AC' data-slide='next'>
+          <span class='carousel-control-next-icon'></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class='banner'>
+IMRPhenomX
+</div>
+  <div class='paragraph'>
+The figures below show the plots for IMRPhenomX
+</div>
+<link rel='stylesheet' href='../css/image_styles.css'>
+<script>
+  $(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+  });
+</script>
+<style>
+  .popover {
+    max-width: 550px;
+    width: 550px;
+  }
+</style>
+<div class='container' style='margin-top:3em; margin-bottom:5em; background-color:#FFFFFF; box-shadow: 0 0 5px grey; max-width: 1400px'>
+  <div class='mx-auto d-block'>
+    <div class='row justify-content-center'>
+      <div class='row'>
+        <div class='column' style='padding-left: 1em;'>
+          <div class='container' style='display: inline-block; width: auto; padding: 0;'>
+      <a href='#demo_2B305A' data-slide-to='0'>
+        <img src='./plots/IMRPhenomX_waveform_time_domain.png' alt='No image available' style='align-items:center; width:450px;'id=IMRPhenomX_waveform_time_domain onclick='modal("IMRPhenomX_waveform_time_domain", "Modal_2B305A")'>
+      </a>
+      <div class='row justify-content-center'>
+      <div class='col-sm-2'>
+      <div class='col-sm-2'>
+          <button value='test' class='btn btn-info btn-xs' style='cursor: pointer' data-toggle='popover' data-placement='top' data-content='Plot showing the time domain waveform generated from the maximum likelihood samples.'>Caption</button>
+          </div>
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='modal fade bs-example-modal-lg' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true' id='Modal_2B305A' style='margin-top: 200px;'>
+  <div class='modal-dialog modal-lg' style='width:90%'>
+    <div class='modal-content'>
+      <div id='demo_2B305A' class='carousel slide' data-ride='carousel' data-interval='false'>
+        <ul class='carousel-indicators'>
+          <li data-target='#demo_2B305A' data-slide-to-'0' class='active'></li>
+          <li data-target='#demo_2B305A' data-slide-to-'0'></li>
+          <li data-target='#demo_2B305A' data-slide-to='0' class='active'></li>
+          <li data-target='#demo_2B305A' data-slide-to='1'></li>
+          <li data-target='#demo_2B305A' data-slide-to='2'></li>
+        </ul>
+        <div class='carousel-inner'>
+          <div class='carousel-item active'>
+            <img src=./plots/IMRPhenomX_waveform_time_domain.png style='align-items:center;' class='mx-auto d-block'>
+          </div>
+        </div>
+        <a class='carousel-control-prev' href='#demo_2B305A' data-slide='prev'>
+          <span class='carousel-control-prev-icon'></span>
+        </a>
+        <a class='carousel-control-next' href='#demo_2B305A' data-slide='next'>
+          <span class='carousel-control-next-icon'></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class='banner' style='font-size: 26px;'>
+Sampler kwargs
+</div>
+  <div class='paragraph'>
+Sampler information extracted from each result file
+</div>
+<div class='container' style='margin-top:3em; margin-bottom:5em; max-width:1400px'>
+    <div class='row justify-content-center'>
+                  <div class='container' style='max-width:1400px'>
+                    <div class='table-responsive'>
+                        <table class='table table-hover' style='max-width:1400px'>
+                          <thead>
+                            <tr>
+                              <th colspan='1'>label</th>
+                              <th colspan='1'>ln_evidence</th>
+                              <th colspan='1'>ln_evidence_error</th>
+                              <th colspan='1'>ln_bayes_factor</th>
+                              <th colspan='1'>ln_noise_evidence</th>
+                              <th colspan='1'>nsamples</th>
+                              <th colspan='1'>pe_algorithm</th>
+                            </tr>
+                          <tbody>
+                            <tr>
+                              <td>gwsignal4gwsurr</td>
+                              <td>-6904.62</td>
+                              <td>0.14</td>
+                              <td>300.47</td>
+                              <td>-7205.09</td>
+                              <td>4900</td>
+                              <td>bilby</td>
+                            </tr>
+                            <tr>
+                              <td>IMRPhenomX</td>
+                              <td>-6046.08</td>
+                              <td>0.13</td>
+                              <td>257.99</td>
+                              <td>-6304.07</td>
+                              <td>4909</td>
+                              <td>bilby</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                  </div>
+    </div>
+</div>
+<div class='container' style='margin-top:-4em; margin-bottom:5em; max-width: 1400px'>
+<button type='button' onclick='export_table_to_csv("sampler.csv")' class='btn btn-outline-secondary btn-table'>Export to CSV</button>
+</div>
+  <div class='banner' style='font-size: 26px;'>
+Meta data
+</div>
+  <div class='paragraph'>
+Meta data extracted from each result file
+</div>
+<div class='container' style='margin-top:3em; margin-bottom:5em; max-width:1400px'>
+    <div class='row justify-content-center'>
+                  <div class='container' style='max-width:1400px'>
+                    <div class='table-responsive'>
+                        <table class='table table-hover' style='max-width:1400px'>
+                          <thead>
+                            <tr>
+                              <th colspan='1'>label</th>
+                              <th colspan='1'>f_ref</th>
+                              <th colspan='1'>time_marginalization</th>
+                              <th colspan='1'>phase_marginalization</th>
+                              <th colspan='1'>distance_marginalization</th>
+                              <th colspan='1'>calibration_marginalization</th>
+                              <th colspan='1'>waveform_generator_class</th>
+                              <th colspan='1'>frequency_domain_source_model</th>
+                              <th colspan='1'>time_domain_source_model</th>
+                              <th colspan='1'>parameter_conversion</th>
+                              <th colspan='1'>sampling_frequency</th>
+                              <th colspan='1'>duration</th>
+                              <th colspan='1'>start_time</th>
+                              <th colspan='1'>time_reference</th>
+                              <th colspan='1'>reference_frame</th>
+                              <th colspan='1'>lal_version</th>
+                              <th colspan='1'>lalsimulation_version</th>
+                              <th colspan='1'>approximant_flags</th>
+                              <th colspan='1'>approximant</th>
+                              <th colspan='1'>IFOs</th>
+                              <th colspan='1'>f_low</th>
+                              <th colspan='1'>f_final</th>
+                              <th colspan='1'>delta_f</th>
+                              <th colspan='1'>f_start</th>
+                              <th colspan='1'>cosmology</th>
+                              <th colspan='1'>final_spin_NR_fits</th>
+                              <th colspan='1'>peak_luminosity_NR_fits</th>
+                              <th colspan='1'>final_mass_NR_fits</th>
+                            </tr>
+                          <tbody>
+                            <tr>
+                              <td>gwsignal4gwsurr</td>
+                              <td>20</td>
+                              <td>True</td>
+                              <td>False</td>
+                              <td>True</td>
+                              <td>False</td>
+                              <td><class 'bilby.gw.waveform_generator.WaveformGenerator'></td>
+                              <td><function NRSur7dq4_wrapper at 0x7a567e0e4940></td>
+                              <td>None</td>
+                              <td><function parameter_conversion at 0x7a567e0e49d0></td>
+                              <td>4096.0</td>
+                              <td>4.0</td>
+                              <td>1126259460.3908691</td>
+                              <td>geocent</td>
+                              <td>H1L1</td>
+                              <td>lal_version=7.6.1, lal_git_version=Branch: None;Tag: lal-v7.6.1;Id: 31af23159ed7c6557180f58ad3f39a06e5a08731;;Builder: Adam Mercer <adam.mercer@ligo.org>;Repository status: CLEAN: All modifications committed</td>
+                              <td>lalsimulation_version=6.1.0, lalsimulation_git_version=Branch: None;Tag: lalsimulation-v6.1.0;Id: 8041734408377ca999821f7e372e2a02e9226e6b;;Builder: Adam Mercer <adam.mercer@ligo.org>;Repository status: CLEAN: All modifications committed</td>
+                              <td>{'reference-frequency': '20.', 'f-min': '20.'}</td>
+                              <td>NRSur7dq4</td>
+                              <td>H1 L1</td>
+                              <td>20</td>
+                              <td>896</td>
+                              <td>0.00390625</td>
+                              <td>20.0</td>
+                              <td>Planck15</td>
+                              <td>['function bbh_final_spin_precessing_projected_UIB2016 at 0x7a567c998d30', 'function bbh_final_spin_precessing_projected_Healyetal at 0x7a567c998b80', 'function bbh_final_spin_precessing_HBR2016 at 0x7a567c998ee0']</td>
+                              <td>['function bbh_peak_luminosity_non_precessing_UIB2016 at 0x7a567c998f70', 'function bbh_peak_luminosity_non_precessing_Healyetal at 0x7a567c999000']</td>
+                              <td>['function bbh_final_mass_non_precessing_UIB2016 at 0x7a567c9984c0', 'function bbh_final_mass_non_precessing_Healyetal at 0x7a567e0e6ef0']</td>
+                            </tr>
+                            <tr>
+                              <td>IMRPhenomX</td>
+                              <td>20</td>
+                              <td>True</td>
+                              <td>False</td>
+                              <td>True</td>
+                              <td>False</td>
+                              <td><class 'bilby.gw.waveform_generator.LALCBCWaveformGenerator'></td>
+                              <td><function lal_binary_black_hole at 0x7a567d9e5000></td>
+                              <td>None</td>
+                              <td><function convert_to_lal_binary_black_hole_parameters at 0x7a567da6dd80></td>
+                              <td>4096.0</td>
+                              <td>4.0</td>
+                              <td>1126259460.3908691</td>
+                              <td>geocent</td>
+                              <td>H1L1</td>
+                              <td>lal_version=7.7.0, lal_git_version=Branch: None;Tag: lal-v7.7.0;Id: ef36dfdf49181b9b376a867b55a14463783de545;;Builder: Adam Mercer <adam.mercer@ligo.org>;Repository status: CLEAN: All modifications committed</td>
+                              <td>lalsimulation_version=6.2.0, lalsimulation_git_version=Branch: None;Tag: lalsimulation-v6.2.0;Id: 1338470a6165fb4b4c98bccdd0efe961f05bc8e0;;Builder: Adam Mercer <adam.mercer@ligo.org>;Repository status: CLEAN: All modifications committed</td>
+                              <td>{}</td>
+                              <td>NRSur7dq4</td>
+                              <td>H1 L1</td>
+                              <td>20</td>
+                              <td>896</td>
+                              <td>0.00390625</td>
+                              <td>20.0</td>
+                              <td>Planck15</td>
+                              <td>['function bbh_final_spin_precessing_projected_UIB2016 at 0x7a567c998d30', 'function bbh_final_spin_precessing_projected_Healyetal at 0x7a567c998b80', 'function bbh_final_spin_precessing_HBR2016 at 0x7a567c998ee0']</td>
+                              <td>['function bbh_peak_luminosity_non_precessing_UIB2016 at 0x7a567c998f70', 'function bbh_peak_luminosity_non_precessing_Healyetal at 0x7a567c999000']</td>
+                              <td>['function bbh_final_mass_non_precessing_UIB2016 at 0x7a567c9984c0', 'function bbh_final_mass_non_precessing_Healyetal at 0x7a567e0e6ef0']</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                  </div>
+    </div>
+</div>
+<div class='container' style='margin-top:-4em; margin-bottom:5em; max-width: 1400px'>
+<button type='button' onclick='export_table_to_csv("meta_data.csv")' class='btn btn-outline-secondary btn-table'>Export to CSV</button>
+</div>
+<script>
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>
+<div class='jumbotron' style='margin-bottom:0; line-height: 0.5;background-color:#989898; bottom:0; position:bottom;width:100%'>
+<div class='container'>
+  <div class='row'>
+    <div class='col-sm-4 icon-bar'>
+      <div class='icon'>
+<a href='https://git.ligo.org/lscsoft/pesummary/tree/v1.3.2' data-toggle='tooltip' title='View PESummary-v1.3.2'><i class='fa fa-code' style='font-size: 30px; color: #E8E8E8; font-weight: 900; padding-right:10px'></i></a>
+<a href='https://git.ligo.org/lscsoft/pesummary/issues' data-toggle='tooltip' title='Open an issue ticket'><i class='fa fa-ticket' style='font-size: 30px; color: #E8E8E8; font-weight: 900; padding-right:10px'></i></a>
+<a href='https://lscsoft.docs.ligo.org/pesummary/' data-toggle='tooltip' title='View the docs!'><i class='fa fa-book' style='font-size: 30px; color: #E8E8E8; font-weight: 900; padding-right:10px'></i></a>
+<a href='https://lscsoft.docs.ligo.org/pesummary/stable/tutorials/make_your_own_page_from_metafile.html' data-toggle='tooltip' title='Make your own page'><i class='fa fa-window-restore' style='font-size: 30px; color: #E8E8E8; font-weight: 900; padding-right:10px'></i></a>
+      </div>
+    </div>
+    <div class='col-sm-7'>
+<p style='color: #E8E8E8; font-weight: bold; font-family: arial-body; margin-top:14px'>This page was produced by vupadhyaya_umassd_edu at 17:21 on November 07 2025</p>
+    </div>
+  </div>
+</div>
+</div>
