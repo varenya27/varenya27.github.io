@@ -1,5 +1,5 @@
 *.h5 
-*pesummary*.json
+*pesummary*json
 *.fits
 *.dat
 *drafts/*
