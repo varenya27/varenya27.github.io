@@ -101,13 +101,13 @@ function grab_html(param, label="None") {
         setTimeout(function() {window.location = "error.html"}, 450)
         window.location = "./" + new_filename;
     } else {
+        if ( param == "NRSur3dq8_Lev2" ) {
+            approx = "None" 
+        }
         if ( param == "NRSur3dq8_Lev3" ) {
             approx = "None" 
         }
         if ( param == "NRSur3dq8_Lev2_noisy" ) {
-            approx = "None" 
-        }
-        if ( param == "NRSur3dq8_Lev2" ) {
             approx = "None" 
         }
  

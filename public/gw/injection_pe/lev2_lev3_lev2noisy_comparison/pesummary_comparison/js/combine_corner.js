@@ -102,9 +102,6 @@ function getImagePortion(c, imgObj, array, label){
     bufferContext.drawImage(imgObj, 0, 0);
 
     var list = {}
-    list['NRSur3dq8_Lev2'] = ['luminosity_distance', 'chirp_mass', 'mass_ratio', 'theta_jn', 'psi', 'phase', 'dec', 'ra', 'geocent_time', 'log_likelihood', 'total_mass', 'mass_1', 'mass_2', 'a_1', 'a_2', 'phi_jl', 'phi_12', 'tilt_1', 'tilt_2', 'symmetric_mass_ratio', 'chi_eff', 'chi_p', 'mass_1_source', 'mass_2_source', 'chirp_mass_source', 'total_mass_source', 'redshift'];
-    list['NRSur3dq8_Lev2_noisy'] = ['luminosity_distance', 'chirp_mass', 'mass_ratio', 'theta_jn', 'psi', 'phase', 'dec', 'ra', 'geocent_time', 'log_likelihood', 'total_mass', 'mass_1', 'mass_2', 'a_1', 'a_2', 'phi_jl', 'phi_12', 'tilt_1', 'tilt_2', 'symmetric_mass_ratio', 'chi_eff', 'chi_p', 'mass_1_source', 'mass_2_source', 'chirp_mass_source', 'total_mass_source', 'redshift'];
-    list['NRSur3dq8_Lev3'] = ['luminosity_distance', 'chirp_mass', 'mass_ratio', 'theta_jn', 'psi', 'phase', 'dec', 'ra', 'geocent_time', 'log_likelihood', 'total_mass', 'mass_1', 'mass_2', 'a_1', 'a_2', 'phi_jl', 'phi_12', 'tilt_1', 'tilt_2', 'symmetric_mass_ratio', 'chi_eff', 'chi_p', 'mass_1_source', 'mass_2_source', 'chirp_mass_source', 'total_mass_source', 'redshift'];
     list['one'] = ['phase', 'phi_12', 'phi_jl', 'mass_ratio', 'geocent_time', 'ra', 'dec', 'luminosity_distance', 'psi', 'chirp_mass', 'a_1', 'a_2', 'tilt_1', 'tilt_2', 'mass_1', 'mass_2', 'total_mass', 'symmetric_mass_ratio', 'iota', 'chi_eff', 'chi_p', 'redshift', 'mass_1_source', 'mass_2_source', 'total_mass_source', 'chirp_mass_source'];
     var indices = []
     
@@ -122,9 +119,6 @@ function getImagePortion(c, imgObj, array, label){
     indices.sort((a,b) => a-b)
 
     var data = {}
-    data['NRSur3dq8_Lev2'] = {'width': 200.00000000000006, 'height': 200.0, 'seperation': 9.999999999999943, 'x0': 100.0, 'y0': 100.0};
-    data['NRSur3dq8_Lev2_noisy'] = {'width': 200.00000000000006, 'height': 200.0, 'seperation': 9.999999999999943, 'x0': 100.0, 'y0': 100.0};
-    data['NRSur3dq8_Lev3'] = {'width': 200.00000000000006, 'height': 200.0, 'seperation': 9.999999999999943, 'x0': 100.0, 'y0': 100.0};
     data['one'] = {'width': 200.00000000000006, 'height': 200.0, 'seperation': 9.999999999999943, 'x0': 100.0, 'y0': 100.0};
     var imagewidth = data[label]["width"];
     var imageheight = data[label]["height"];
